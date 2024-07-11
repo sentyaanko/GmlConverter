@@ -2,7 +2,7 @@
 
 * GML 形式のファイルを読み込み、 Mesh2 毎にまとめた 16bit Grayscale Png を出力するモードです。
 * 下の画像はこのモードに切り替えた直後の画面です。
-	* ![](Images/ConvertGmlToPng/ConvertGmlToPng_00.png)
+	* ![](images/ConvertGmlToPng/ConvertGmlToPng_00.png)
 
 > [!NOTE]
 > * GML 形式についての知識が必要になります。
@@ -40,7 +40,7 @@
 
 1. __Load ボタン__ 、もしくはドラッグアンドドロップで GML 形式のファイルを開きます。
 	* 下の画像は幾つかのファイルをロードし、リストから項目を選択した状態です。画面左側にリストで選択した項目のプレビューが表示されます。
-		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_01.png)
+		* ![](images/ConvertGmlToPng/ConvertGmlToPng_01.png)
 	* __Grouping items__ にチェックを入れておくと、 以下のようなグループ化がなされます。
 		* Mesh1 毎に一段目（MidnightBlue）のグループ化
 			* この列には Mesh1 の番号(4 桁)、グループ内の項目数が表示されます。
@@ -59,7 +59,7 @@
 		*  __6840-27__ は一つの __10m メッシュ__ と一つの __5m メッシュ__ の合計 2 ファイルが合成されて出力される。
 		*  __6841-00__ は一つの __10m メッシュ__ と複数の __5m メッシュ__ の合計 52 ファイルが合成されて出力される。
 	* 下の画像は実際の出力結果です。
-		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_02.png)
+		* ![](images/ConvertGmlToPng/ConvertGmlToPng_02.png)
 	* 表にまとめると以下のようになります。
 		| 名称					| Mesh1	| Mesh2	| Mesh3<br>最小	| Mesh3<br>最大	| ピクセル間距離	| サイズ		|
 		|----					|----	|----	|----			|----			|----				|----			|
@@ -76,16 +76,16 @@
 		* ここにはないですが、ピクセル間距離が 1m の __1m メッシュ__ のサイズは 11250 x 7500 となります。
 	* なお、 Mesh2 を満たさないデータを保存した場合、サイズはこれより小さくなります。
 	* 下の画像は 一つの Mesh1 / Mesh2 に 3つの __5m メッシュ__ をロードした状態です。
-		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_03.png)
+		* ![](images/ConvertGmlToPng/ConvertGmlToPng_03.png)
 	* 下の画像は実際の出力結果です。
-		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_04.png)
+		* ![](images/ConvertGmlToPng/ConvertGmlToPng_04.png)
 	* ファイルは以下の命名規則で出力されます。
 		| 名称					| Mesh1	| Mesh2	| Mesh3<br>最小	| Mesh3<br>最大	| ピクセル間距離	| サイズ		|
 		|----					|----	|----	|----			|----			|----				|----			|
 		| 6741-70-2142-5.png	| 6741	| 70	| 21			| 42			| 5					| 450 x 450		|
 		* (ピクセル間距離、サイズ)が (5m 、 450 x 450) で ( 450 * 5m x 450 * 5m = 2.25 km x 2.25 km) 相当のデータとなります。
 	* 下の画像は [CreateMask](CreateMask.md) モードを利用して画像を表示している様子です。
-		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_05.png)
+		* ![](images/ConvertGmlToPng/ConvertGmlToPng_05.png)
 		* 右上(6741-70-42)と中央部(6741-70-31 / 6741-70-32) のファイルを指定していないため、空白になっている様子が確認できます。
 	* ファイルの内容
 		* フォーマットは 16bit Grayscale Png です。
@@ -117,13 +117,13 @@
 > * 河川や湖沼などの水域
 > 	* 標高が設定されていない（ __データなし__ に設定されている）ため、輝度値 0 として扱っています。
 > 	* 以下は静岡県内ですが、川や池が赤色(= 輝度値 0 で抜け色扱い)（ __データなし__ ）になっていることが確認できます。
-> 		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_06.png)
+> 		* ![](images/ConvertGmlToPng/ConvertGmlToPng_06.png)
 > * __火山標高(Dem10A)__ の __データなし__ の領域
 >	 * 高山周辺では __火山標高(Dem10A)__ が提供されていますが、提供エリア内のすべてのデータが設定されているわけではありません。
 > 	* 以下は富士山周辺の __火山標高(Dem10A)__ の様子です。
-> 		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_07.png)
+> 		* ![](images/ConvertGmlToPng/ConvertGmlToPng_07.png)
 > 	* 以下は同じエリアの __標高(Dem10B)__ の様子です。
-> 		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_08.png)
+> 		* ![](images/ConvertGmlToPng/ConvertGmlToPng_08.png)
 > 	* 基本的にこれらは重ねて使う必要があります。
 
 

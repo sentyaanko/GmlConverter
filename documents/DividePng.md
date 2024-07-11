@@ -2,7 +2,7 @@
 
 * [CreateMask](CreateMask.md) で出力された Png ファイルを一定サイズの格子状に分割した Png ファイルを出力するモードです。
 * 下の画像はこのモードに切り替えた直後の画面です。
-	* ![](Images/DevidePng/DevidePng_00.png)
+	* ![](images/DevidePng/DevidePng_00.png)
 
 ## UI の機能
 
@@ -31,7 +31,7 @@
 	* __basename(-(?:0|5|10))?\.png__ を元の名前とすると、 __basename.*(-(?:0|5|10))?\.png__ を満たすファイルを読み込みます。
 	* ただし、画像の幅と高さが最初に指定したファイルと異なる場合は一覧から外されます。
 	* 下の画像は __Load Related Files__ にチェックを入れた状態で __heightmap-5.png__ を開いた時の様子です。
-		* ![](Images/DevidePng/DevidePng_01.png)
+		* ![](images/DevidePng/DevidePng_01.png)
 		* ファイルの内容は以下の通り。
 			| ファイル名							| 内容				| 作成方法								|
 			|---- 									|----				|----									|
@@ -76,12 +76,12 @@
 	* __Load Related Files__ を利用すれば、同じようなファイル名で同じサイズのファイル群を一度に読み込めます。
 2. __GridSpacing__ / __Include Boundary Lines__ / __Center Point__ の設定をします。
 	* 下の画像は __GridSpacing__ を 1009 x 1009 にし、 __Center Point__ を指定したあとの様子です。
-		* ![](Images/DevidePng/DevidePng_02.png)
+		* ![](images/DevidePng/DevidePng_02.png)
 3. __Save ボタン__ で保存するフォルダを指定します。
 	* 設定に従い分割した Png ファイルが出力できます。
 	* 複数のファイルを開いている場合、すべてのファイルに対して処理が行われます。。
 	* 下の画像は出力フォルダの様子です。
-		* ![](Images/DevidePng/DevidePng_03.png)
+		* ![](images/DevidePng/DevidePng_03.png)
 		* 横に 3 縦に 5 分割され、 2 つの高さマップ画像と 4 つのマスク画像を分割したので 3 * 5 * (2 + 4) = 90 ファイル出力されています。
 	* 以下の命名規則で出力されます。
 		* **{もとのファイル名}_spacing{格子の間隔}_x{横の分割番号}_y{縦の分割番号}.png**

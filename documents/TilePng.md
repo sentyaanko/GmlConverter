@@ -2,7 +2,7 @@
 
 * [ConvertGmlToPng](ConvertGmlToPng.md) で出力された Png ファイルを一つの Png にまとめて出力するモードです。
 * 下の画像はこのモードに切り替えた直後の画面です。
-	* ![](Images/TilePng/TilePng_00.png)
+	* ![](images/TilePng/TilePng_00.png)
 
 ## UI の機能
 
@@ -27,9 +27,9 @@
 1. __Load ボタン__ で Png ファイルが置かれたフォルダを指定します。
 	* 読み込むファイルの命名規則は [ConvertGmlToPng](ConvertGmlToPng.md) を参照してください。
 	* 下の画像は [ConvertGmlToPng](ConvertGmlToPng.md) で出力したフォルダの内容です。
-		* ![](Images/ConvertGmlToPng/ConvertGmlToPng_02.png)
+		* ![](images/ConvertGmlToPng/ConvertGmlToPng_02.png)
 	* 下の画像は上記のフォルダを指定した状態です。画面右側にプレビューが表示されます。
-		* ![](Images/TilePng/TilePng_01.png)
+		* ![](images/TilePng/TilePng_01.png)
 	* 読み込むファイルは [ConvertGmlToPng](ConvertGmlToPng.md) で出力される命名規則に従ったファイルのみで、他は無視されます。
 2. __PixelDistance コンボボックス__ で出力時のピクセル間距離を指定します。
 	*  __Minimum__ の場合
@@ -41,11 +41,11 @@
 		* 前述の例で 10 を指定すると、 5 と 10 のエリアがあるため、 5 のエリアは縮小したデータが利用されます。
 3. __Trimming__ や __Margin__ を指定します。
 	* 下の画像は __Trimming__ と __Margin__ を有効にし、 __Size__ を 100 、 __SectionSize__ を 63x63 にした状態です。
-		* ![](Images/TilePng/TilePng_02.png)
+		* ![](images/TilePng/TilePng_02.png)
 		* __Informations__ の __Output Size__ は反映されません。（出力時まで処理を行っていない為）
 4. __Save ボタン__ で読み込まれた Png ファイルが結合され、一つの大きな Png ファイルが保存されます。
 	* 下の画像は出力フォルダです。
-		* ![](Images/TilePng/TilePng_03.png)
+		* ![](images/TilePng/TilePng_03.png)
 		* 設定を変えて出力した3つのファイルがあります。
 			| ファイル名		| 幅	| 高さ	| Triming	| Margin	| SectionSize	|
 			|----				|----	|----	|----		|----		|----			|

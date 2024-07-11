@@ -2,7 +2,7 @@
 
 * [TilePng](TilePng.md) で出力された Png ファイルからマスク画像を出力するモードです。
 * 下の画像はこのモードに切り替えた直後の画面です。
-	* ![](Images/CreateMask/CreateMask_00.png)
+	* ![](images/CreateMask/CreateMask_00.png)
 
 ## UI の機能
 
@@ -32,11 +32,11 @@
 		| Curvature			| 曲率を用いたマスクです。					| 可				|
 	* Height
 		* 下の画像はこのモードの様子です。
-			* ![](Images/CreateMask/CreateMask_01.png)
+			* ![](images/CreateMask/CreateMask_01.png)
 		* データ確認用です。
 	* HillShade
 		* 下の画像はこのモードの様子です。
-			* ![](Images/CreateMask/CreateMask_02.png)
+			* ![](images/CreateMask/CreateMask_02.png)
 		* UI の機能
 			| 名称									| 概要																					|
 			|----									|----																					|
@@ -47,7 +47,7 @@
 		* [ConvertGmlToPng](ConvertGmlToPng.md) で表示しているものと同じです。
 	* AmbientOcclusion
 		* 下の画像はこのモードの様子です。
-			* ![](Images/CreateMask/CreateMask_03.png)
+			* ![](images/CreateMask/CreateMask_03.png)
 		* UI の機能
 			| 名称									| 概要																					|
 			|----									|----																					|
@@ -57,7 +57,7 @@
 		* 動作確認用に作った簡易的なもので、正確には AmbientOcclusion ではありません。
 	* Curvature
 		* 下の画像はこのモードの様子です。
-			* ![](Images/CreateMask/CreateMask_04.png)
+			* ![](images/CreateMask/CreateMask_04.png)
 		* UI の機能
 			| 名称									| 概要																					|
 			|----									|----																					|
@@ -72,9 +72,9 @@
 			| AngleDirectionMode					| 斜面の方向の情報を出力するようにします。												|
 			| AngleDirection						| 下ると輝度値を高くする方角（ 0 が北で時計回り）です。									|
 		* 下の画像は設定を __Negative__ にした時の様子です。 __Positive__ の時に輝度値が高くなっていた凹地が輝度値が低くなり、海岸や山頂などの輝度値が高くなります。
-			* ![](Images/CreateMask/CreateMask_05.png)
+			* ![](images/CreateMask/CreateMask_05.png)
 		* 下の画像は設定を __AngleDirectionMode__ にした時の様子です。北側に下る斜面ほど輝度値が高く、逆側が輝度値が低くなります。
-			* ![](Images/CreateMask/CreateMask_06.png)
+			* ![](images/CreateMask/CreateMask_06.png)
 
 > [!NOTE]
 > * プレビューの描画について

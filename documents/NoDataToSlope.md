@@ -2,7 +2,7 @@
 
 * [TilePng](TilePng.md) で出力された Png ファイルの輝度値が 0 の部分を 0 以外の部分から傾斜にして出力するモードです。
 * 下の画像はこのモードに切り替えた直後の画面です。
-	* ![](Images/NoDataToSlope/NoDataToSlope_00.png)
+	* ![](images/NoDataToSlope/NoDataToSlope_00.png)
 
 > [!NOTE]
 > * この機能は離島など、海に面した地形を利用する際に使用することを想定しています。
@@ -46,10 +46,10 @@
 	* 逆に、それさえ守っている 16bit Grayscale Png であれば、別のツールで作った Png でも読み込み可能です。
 2. DepthScale / DistanceScale / InitialDepth の設定を調整します。
 	* 下の画像は初期値での様子です。
-		* ![](Images/NoDataToSlope/NoDataToSlope_01.png)
+		* ![](images/NoDataToSlope/NoDataToSlope_01.png)
 3. __Apply ボタン__ でプレビューを更新します。
 	* 下の画像は値を変更したときの様子です。
-		* ![](Images/NoDataToSlope/NoDataToSlope_02.png)
+		* ![](images/NoDataToSlope/NoDataToSlope_02.png)
 4. __Save ボタン__ で現在設定中に従い Png ファイルが保存されます。
 	* ファイルの内容
 		* フォーマットは 16bit Grayscale Png です。
