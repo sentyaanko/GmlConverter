@@ -2,24 +2,26 @@
 
 これは、国土地理院で公開されている [基盤地図情報（数値標高モデル）](documents/AboutGml.md) をもとに Png ファイルを出力するためのツールです。
 
-## 使用方法
-
 * 下の画像はアプリケーションを実行した時の様子です。
 	* ![](documents/images/ConvertGmlToPng/ConvertGmlToPng_01.png)
 	* ![](documents/images/CreateMask/CreateMask_03.png)
 	* ![](documents/images/CreateMask/CreateMask_04.png)
+
+## 使用方法
+
 * モード
-	* 起動直後は [ConvertGmlToPng] モードになっています。
-	* 画面上部の 4 つのボタンで機能の切り替えを行います。
-	* モードを切り替えると、前のモードの内容はクリアされます。
-	* 各モードの操作方法についてはそれぞれのドキュメントを参照してください。
-		| 機能名称			| 用途																							|
+	* 5 つのモードがあります。
+		| モード			| 用途																							|
 		|----				|----																							|
 		| [ConvertGmlToPng]	| GML 形式のファイルを 16bit Grayscale Png ファイルに変換する機能 								|
 		| [TilePng] 		| 16bit Grayscale Png を結合し、一つの大きな 16bit Grayscale Png を出力する機能 				|
 		| [CreateMask] 		| 16bit Grayscale Png をもとに曲率などを利用したマスク用 16bit Grayscale Png を出力する機能 	|
 		| [NoDataToSlope] 	| 16bit Grayscale Png をもとに輝度値が 0 の部分を 0 以外の部分から傾斜にする機能			 	|
 		| [DividePng] 		| 16bit Grayscale Png を一定の矩形サイズに分割する機能 											|
+	* 起動直後は [ConvertGmlToPng] モードになっています。
+	* モードの切替は画面上部の 5 つのボタンで行います。
+	* モードを切り替えると、前のモードの内容はクリアされます。
+	* 各モードについて、詳しくはそれぞれのドキュメントを参照してください。
 * 用途
 	* このツールの出力ファイルは Unreal Engine の Landscape でインポートに利用できます。
 	* 下の画像はインポートした時の様子です。
