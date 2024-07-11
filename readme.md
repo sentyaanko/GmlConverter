@@ -5,7 +5,7 @@
 ## 使用方法
 
 * 下の画像はアプリケーションを実行した時の様子です。
-	* ![](documents/Images/ConvertGmlToPng/ConvertGmlToPng_00.png)
+	* ![](documents/images/ConvertGmlToPng/ConvertGmlToPng_00.png)
 * モード
 	* 起動直後は [ConvertGmlToPng] モードになっています。
 	* 画面上部の 4 つのボタンで機能の切り替えを行います。
