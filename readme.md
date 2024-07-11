@@ -5,7 +5,9 @@
 ## 使用方法
 
 * 下の画像はアプリケーションを実行した時の様子です。
-	* ![](documents/images/ConvertGmlToPng/ConvertGmlToPng_00.png)
+	* ![](documents/images/ConvertGmlToPng/ConvertGmlToPng_01.png)
+	* ![](documents/images/CreateMask/CreateMask_03.png)
+	* ![](documents/images/CreateMask/CreateMask_04.png)
 * モード
 	* 起動直後は [ConvertGmlToPng] モードになっています。
 	* 画面上部の 4 つのボタンで機能の切り替えを行います。
@@ -20,6 +22,8 @@
 		| [DividePng] 		| 16bit Grayscale Png を一定の矩形サイズに分割する機能 											|
 * 用途
 	* このツールの出力ファイルは Unreal Engine の Landscape でインポートに利用できます。
+	* 下の画像はインポートした時の様子です。
+		* ![](documents/images/Landscape/Landscape_00.png)
 	* 詳しくは [Landscape](documents/Landscape.md) を参照してください。
 
 
