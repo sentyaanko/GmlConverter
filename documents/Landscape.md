@@ -1,13 +1,13 @@
 # Landscape
 
 * Unreal Engine のランドスケープでの使用サンプルです。
-* 明るい草を基本とし、砂利を稜線に、暗い草を谷に配置するように設定してみます。
-	* 以下の画像は各種設定を行ったあとの様子です。
-		* ![](Images/Landscape/Landscape_00.png)
-	* 以下の画像は View Mode で Landscape Visualizer の Layer Debug を指定した様子です。
-		* ![](Images/Landscape/Landscape_01.png)
-	* 以下の画像は各レイヤーの色の設定の様子です。
-		* ![](Images/Landscape/Landscape_02.png)
+* ここでは、明るい草を基本とし、砂利を稜線に、暗い草を谷に配置するように設定してみます。
+* 以下の画像は各種設定を行ったあとの様子です。
+	* ![](Images/Landscape/Landscape_00.png)
+* 以下の画像は View Mode で Landscape Visualizer の Layer Debug を指定した様子です。
+	* ![](Images/Landscape/Landscape_01.png)
+* 以下の画像は各レイヤーの色の設定の様子です。
+	* ![](Images/Landscape/Landscape_02.png)
 
 
 ## 操作手順
@@ -69,9 +69,9 @@
 		* 以下の画像はその様子です。
 			* ![](Images/Landscape/Landscape_05.png)
 		* 以降、リビルドが必要になるとこの警告は表示されるので、状況に応じてリビルドを実行します。
-5. Grass で Fill　Layer します。
+5. Grass で Fill Layer します。
 	* __Landscape ツール__ で __Paint モードタブ__ を選択します。
-	* __Layers > Grass__ を選択し、 __右クリック > Fill Layer__ を選択し、 Grass レイヤーで全領域を塗り潰します。
+	* __Layers > Grass__ を選択し、 __右クリック > Fill Layer__ を選択し、全領域が Grass レイヤーが描画されるように塗り潰します。
 6. GrassDark と Gravel の Landscape Layer をインポートします。
 	* __Landscape ツール__ で __Managed モードタブ__ 、__Import タブ__ を選択します。
 	* 以下の画像は設定の様子です。
@@ -84,7 +84,7 @@
 		| Layers > Gravel		| heightmap-CurvatureNegative-5.png	|
 	* __Import ボタン__ を押し、インポートを実行します。
 	* 一旦保存してレベルを開き直します。
-7. World Partition Editor Minimap のビルド
+7. World Partition Editor Minimap をビルドします。
 	* __World Paation ツール__ で作成した __LandscapeRegion_x_y__ を矩形選択し、 __Load Selected Region(s)__ を選び、全リージョンをロードします。
 	* __World Paation ツール__ の左上にある __Build ボタン__ から __Build World Partition Editor Minimap__ を選びます。
 	* 出力が終わると __World Paation ツール__ 内のミニマップの内容が更新されます。

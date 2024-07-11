@@ -10,14 +10,17 @@
 	* 起動直後は [ConvertGmlToPng] モードになっています。
 	* 画面上部の 4 つのボタンで機能の切り替えを行います。
 	* モードを切り替えると、前のモードの内容はクリアされます。
-	* 各モードの操作方法についてはそれぞれのドキュメントを参照してください
+	* 各モードの操作方法についてはそれぞれのドキュメントを参照してください。
 		| 機能名称			| 用途																							|
 		|----				|----																							|
-		| [ConvertGmlToPng]	|　GML 形式のファイルを 16bit Grayscale Png ファイルに変換する機能 								|
-		| [TilePng] 		|　16bit Grayscale Png を結合し、一つの大きな 16bit Grayscale Png を出力する機能 				|
-		| [CreateMask] 		|　16bit Grayscale Png をもとに曲率などを利用したマスク用 16bit Grayscale Png を出力する機能 	|
-		| [NoDataToSlope] 	|　16bit Grayscale Png をもとに輝度値が 0 の部分を 0 以外の部分から傾斜にする機能			 	|
-		| [DividePng] 		|　16bit Grayscale Png を一定の矩形サイズに分割する機能 										|
+		| [ConvertGmlToPng]	| GML 形式のファイルを 16bit Grayscale Png ファイルに変換する機能 								|
+		| [TilePng] 		| 16bit Grayscale Png を結合し、一つの大きな 16bit Grayscale Png を出力する機能 				|
+		| [CreateMask] 		| 16bit Grayscale Png をもとに曲率などを利用したマスク用 16bit Grayscale Png を出力する機能 	|
+		| [NoDataToSlope] 	| 16bit Grayscale Png をもとに輝度値が 0 の部分を 0 以外の部分から傾斜にする機能			 	|
+		| [DividePng] 		| 16bit Grayscale Png を一定の矩形サイズに分割する機能 											|
+* 用途
+	* このツールの出力ファイルは Unreal Engine の Landscape でインポートに利用できます。
+	* 詳しくは [Landscape](documents/Landscape.md) を参照してください。
 
 
 ## 開発環境
