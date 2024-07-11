@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Shaders\AmbientOcclusionMapPixelShader.cso" />
+    <None Remove="Shaders\CurvatureMapPixelShader.cso" />
+    <None Remove="Shaders\DebugShaders\AmbientOcclusionMapPixelShader.cso" />
+    <None Remove="Shaders\DebugShaders\CurvatureMapPixelShader.cso" />
+    <None Remove="Shaders\DebugShaders\HeightMapPixelShader.cso" />
+    <None Remove="Shaders\DebugShaders\HillShadePixelShader.cso" />
+    <None Remove="Shaders\HeightMapPixelShader.cso" />
+    <None Remove="Shaders\HillShadePixelShader.cso" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Properties\DevidePngSample.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.8.0" />
+    <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="7.2.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="OpenCvSharp4" Version="4.10.0.20240616" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20240616" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <Resource Include="Shaders\DebugShaders\AmbientOcclusionMapPixelShader.cso"><LogicalName>Shaders\AmbientOcclusionMapPixelShader.cso</LogicalName></Resource>
+    <Resource Include="Shaders\DebugShaders\CurvatureMapPixelShader.cso"><LogicalName>Shaders\CurvatureMapPixelShader.cso</LogicalName></Resource>
+    <Resource Include="Shaders\DebugShaders\HeightMapPixelShader.cso"><LogicalName>Shaders\HeightMapPixelShader.cso</LogicalName></Resource>
+    <Resource Include="Shaders\DebugShaders\HillShadePixelShader.cso"><LogicalName>Shaders\HillShadePixelShader.cso</LogicalName></Resource>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <Resource Include="Shaders\ReleaseShaders\AmbientOcclusionMapPixelShader.cso"><LogicalName>Shaders\AmbientOcclusionMapPixelShader.cso</LogicalName></Resource>
+    <Resource Include="Shaders\ReleaseShaders\CurvatureMapPixelShader.cso"><LogicalName>Shaders\CurvatureMapPixelShader.cso</LogicalName></Resource>
+    <Resource Include="Shaders\ReleaseShaders\HeightMapPixelShader.cso"><LogicalName>Shaders\HeightMapPixelShader.cso</LogicalName></Resource>
+    <Resource Include="Shaders\ReleaseShaders\HillShadePixelShader.cso"><LogicalName>Shaders\HillShadePixelShader.cso</LogicalName></Resource>
+  </ItemGroup>
+
+</Project>

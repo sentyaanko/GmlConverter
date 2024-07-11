@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="GmlConverter.Views.UserControls.DevidePng"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GmlConverter.Views.UserControls"
+             xmlns:vm="clr-namespace:GmlConverter.ViewModels"
+             xmlns:localeffects="clr-namespace:GmlConverter.Effects"
+             Focusable="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="900"
+             >
+    <UserControl.Resources>
+        <RoutedCommand
+            x:Key="PreviewScaleChangeCommand"
+            x:Name="previewScaleChangeCommand" />
+        <localeffects:HeightShaderEffect
+            x:Key="HeightShaderEffect"
+            x:Name="heightShaderEffect" />
+        <ScaleTransform
+            x:Key="ImageScale"
+            x:Name="imageScale" d:ScaleX="0.2" d:ScaleY="0.2" />
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{StaticResource PreviewScaleChangeCommand}" Executed="CommandBinding_PreviewScaleChange" />
+    </UserControl.CommandBindings>
+    <UserControl.InputBindings>
+        <KeyBinding Key="NumPad0" Modifiers="Ctrl" Command="{StaticResource PreviewScaleChangeCommand}"  CommandParameter="Reset" />
+        <KeyBinding Key="D0" Modifiers="Ctrl" Command="{StaticResource PreviewScaleChangeCommand}"  CommandParameter="Reset" />
+        <KeyBinding Key="Add" Modifiers="Ctrl" Command="{StaticResource PreviewScaleChangeCommand}"  CommandParameter="Up" />
+        <KeyBinding Key="Subtract" Modifiers="Ctrl" Command="{StaticResource PreviewScaleChangeCommand}" CommandParameter="Down" />
+    </UserControl.InputBindings>
+    <DockPanel
+        IsEnabled="{Binding IsNotProcessing}"
+        LastChildFill="True">
+        <StackPanel Orientation="Vertical"  Margin="1" Width="231" DockPanel.Dock="Left">
+            <Button Content="Load" Margin="0" Click="LoadButton_Click" />
+            <Button Content="Save" IsEnabled="{Binding IsSaveButtonEnabled}" Margin="0" Click="SaveButton_Click" />
+
+            <CheckBox
+                Content="Load Related Files"
+                IsChecked="{Binding IsOpenRelatedFiles}" d:IsChecked="True" />
+            <DockPanel>
+                <Label Content="GridSpacing:" />
+                <ComboBox
+                    Margin="0"
+                    SelectedIndex="{Binding GridSpacingIndex}" d:SelectedIndex="0"
+                    >
+                    <ComboBoxItem>127 x 127</ComboBoxItem>
+                    <ComboBoxItem>253 x 253</ComboBoxItem>
+                    <ComboBoxItem>505 x 505</ComboBoxItem>
+                    <ComboBoxItem>1009 x 1009</ComboBoxItem>
+                    <ComboBoxItem>2017 x 2017</ComboBoxItem>
+                    <ComboBoxItem>4033 x 4033</ComboBoxItem>
+                    <ComboBoxItem>8129 x 8129</ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+
+            <CheckBox Content="Include Boundary Lines" IsChecked="{Binding IsIncludeBoundaryLines}" />
+
+
+            <GroupBox Header="Informations" Margin="1" BorderBrush="Black" >
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Preview Scale:" Padding="0" />
+                        <Label Content="{Binding Source={StaticResource ImageScale}, Path=ScaleX}" d:Content="100.00%" ContentStringFormat="{}{0:P2}" Padding="5,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Center Point:" Padding="0" />
+                        <Label Content="{Binding CenterPoint}" d:Content="-1, -1" Padding="5,0,0,0" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <Label Content="File List"/>
+            <DataGrid
+                x:Name="fileInformationDataGrid"
+                ItemsSource="{Binding FileInformations}"
+                Margin="1"
+                Height="300"
+                CanUserAddRows="False" 
+                AutoGenerateColumns="False" 
+                SelectedItem="{Binding FileInformationSelectedItem}"
+                >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding FileName}" IsReadOnly="True" Width="*" />
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Remove" Click="FileInformationDataGrid_ContextMenu_Remove_Click" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+
+
+        </StackPanel>
+        <ScrollViewer
+            x:Name="previewScrollVewer" 
+            Margin="1" BorderBrush="Black" Background="Red" BorderThickness="1" 
+            MouseRightButtonDown="PreviewImage_MouseRightButtonDown"
+            MouseRightButtonUp="PreviewImage_MouseRightButtonUp"
+            MouseLeftButtonUp="PreviewImage_MouseLeftButtonUp"
+            MouseMove="PreviewImage_MouseMove"
+            HorizontalScrollBarVisibility="Auto" 
+            VerticalScrollBarVisibility="Auto" >
+            <Grid
+                LayoutTransform="{StaticResource ImageScale}"
+                MouseWheel="PreviewImage_MouseWheel" 
+                >
+                <Image
+                    x:Name="previewImage" 
+                    Source="{Binding PreviewBitmapSource}" d:Source="/work/Preview-10.png" 
+                    Stretch="None" 
+                    RenderOptions.BitmapScalingMode="NearestNeighbor"
+                    RenderOptions.CachingHint="Unspecified"
+                    RenderOptions.EdgeMode="Unspecified"
+                    >
+                </Image>
+                <local:GridControl
+                    x:Name="gridControl"
+                    Width="{Binding PreviewWidth}"
+                    Height="{Binding PreviewHeight}"
+                    Visibility="{Binding GridCanvasVisibility}"
+                    CenterPoint="{Binding CenterPoint}"
+                    GridSpacing="{Binding GridSpacing}"
+                    />
+            </Grid>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

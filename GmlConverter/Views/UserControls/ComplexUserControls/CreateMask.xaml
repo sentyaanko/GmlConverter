@@ -1,0 +1,251 @@
+﻿<!--
+    Focusable について
+        Load ボタンを押した際、 Load ボタンを Disable するが、その際フォーカスが失われる。
+        UserContorl の Focusable="True" にすることでメインウィンドウにフォーカスが移ってしまうのを避けている。
+-->
+<UserControl x:Class="GmlConverter.Views.UserControls.CreateMask"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GmlConverter.Views.UserControls"
+             xmlns:localvm="clr-namespace:GmlConverter.ViewModels"
+             xmlns:localeffects="clr-namespace:GmlConverter.Effects"
+             xmlns:pf="clr-namespace:System.Windows;assembly=PresentationFramework"
+             Focusable="True"
+             mc:Ignorable="d" d:DesignHeight="550" d:DesignWidth="900" 
+             >
+    <UserControl.Resources>
+        <RoutedCommand
+            x:Key="PreviewScaleChangeCommand"
+            x:Name="previewScaleChangeCommand" />
+        <localeffects:HeightShaderEffect
+            x:Key="HeightShaderEffect"
+            x:Name="heightShaderEffect" />
+        <localeffects:HillShadeShaderEffect
+            x:Key="HillShadeShaderEffect"
+            x:Name="hillShadeShaderEffect"
+            ImageWidth="{Binding ImageWidth}"
+            ImageHeight="{Binding ImageHeight}"
+            Distance="{Binding PixelDistance}"
+            LightSourceAzimuth="{Binding HillShadeLightSourceAzimuth}"
+            LightSourceAltitude="{Binding HillShadeLightSourceAltitude}"
+            DrawShade="{Binding HillShadeDrawShade}" />
+        <localeffects:AmbientOcclusionShaderEffect
+            x:Key="AmbientOcclusionShaderEffect" 
+            x:Name="ambientOcclusionShaderEffect" 
+            ImageWidth="{Binding ImageWidth}"
+            ImageHeight="{Binding ImageHeight}"
+            Distance="{Binding PixelDistance}"
+            Adjust="{Binding AmbientOcclusionAdjustSliderValue}"
+            Exponent="{Binding AmbientOcclusionExponentSliderValue}" />
+        <localeffects:CurvatureShaderEffect
+            x:Key="CurvatureShaderEffect"
+            x:Name="curvatureShaderEffect"
+            ImageWidth="{Binding ImageWidth}"
+            ImageHeight="{Binding ImageHeight}"
+            Distance="{Binding PixelDistance}"
+            Adjust="{Binding CurvatureAdjustSliderValue}"
+            Exponent="{Binding CurvatureExponentSliderValue}"
+            MaskHeightMin="{Binding CurvatureMaskHeightMinSliderValue}"
+            MaskHeightMax="{Binding CurvatureMaskHeightMaxSliderValue}"
+            Positive="{Binding CurvaturePositive}"
+            AngleMul="{Binding CurvatureAngleDirection}"
+            AngleMul0="{Binding CurvatureAngleDirection0}"
+            AngleMul1="{Binding CurvatureAngleDirection1}"
+            AngleMul2="{Binding CurvatureAngleDirection2}"
+            AngleMul3="{Binding CurvatureAngleDirection3}" 
+            AngleBase="{Binding CurvatureAngleBaseSliderValue}"
+            />
+        <local:EffectTypeStringDictionary
+            x:Key="EffectTypeStringDictionary"
+            x:Name="effectTypeStringDictionary" />
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{StaticResource PreviewScaleChangeCommand}" Executed="CommandBinding_PreviewScaleChange" />
+    </UserControl.CommandBindings>
+    <UserControl.InputBindings>
+        <KeyBinding Key="NumPad0" Modifiers="Ctrl" Command="{StaticResource PreviewScaleChangeCommand}"  CommandParameter="Reset" />
+        <KeyBinding Key="D0" Modifiers="Ctrl" Command="{StaticResource PreviewScaleChangeCommand}"  CommandParameter="Reset" />
+        <KeyBinding Key="Add" Modifiers="Ctrl" Command="{StaticResource PreviewScaleChangeCommand}"  CommandParameter="Up" />
+        <KeyBinding Key="Subtract" Modifiers="Ctrl" Command="{StaticResource PreviewScaleChangeCommand}" CommandParameter="Down" />
+    </UserControl.InputBindings>
+    <DockPanel
+        IsEnabled="{Binding IsNotProcessing}"
+        LastChildFill="True">
+        <StackPanel Orientation="Vertical"  Margin="1" Width="231" DockPanel.Dock="Left">
+            <Button Content="Load" Margin="0" Click="LoadButton_Click" />
+            <Button Content="Save" IsEnabled="{Binding IsSaveButtonEnabled}" Margin="0" Click="SaveButton_Click" />
+            <GroupBox Header="Informations" Margin="1" BorderBrush="Black" >
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Input FileName:" Padding="0" />
+                    <Label Content="{Binding InputFileNameLabel}" d:Content="InputFilename-10.png" Padding="5,0,0,0" />
+                    <Label Content="Preview Scale:" Padding="0" />
+                    <Label Content="{Binding ElementName=imageScale, Path=ScaleX}" d:Content="100.00%" ContentStringFormat="{}{0:P2}" Padding="5,0,0,0" />
+                </StackPanel>
+            </GroupBox>
+
+            <DockPanel >
+                <Label Content="MaskMode:" />
+                <ComboBox
+                    x:Name="maskMode" 
+                    Margin="0" 
+                    SelectedIndex="0" 
+                    ItemsSource="{Binding EffectTypeNameDictionary, Source={StaticResource EffectTypeStringDictionary}}"
+                    SelectedValuePath="Key"
+                    DisplayMemberPath="Value"
+                    SelectionChanged="MaskModeComboBox_SelectionChanged"  >
+                </ComboBox>
+            </DockPanel>
+
+            <local:HillShadeSettingsControl
+                x:Name="hillShadeSettings"
+                Visibility="Collapsed" d:Visibility="Collapsed"
+                />
+
+            <!-- Visibility を bind ですませば x:Name 不要では？  view の処理なのでバインドせず、今のままにしておく。 -->
+            <GroupBox x:Name="ambientOcclusionSettings" 
+                      Header="AmbientOcclusion:" 
+                      Visibility="Collapsed" d:Visibility="Collapsed"
+                      Margin="1" BorderBrush="Black" >
+                <StackPanel Orientation="Vertical" >
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="Adjust:" />
+                        <Label
+                            Content="{Binding AmbientOcclusionAdjustSliderValue}" d:Content="1.00" 
+                            ContentStringFormat="{}{0:F2}" />
+                    </StackPanel>
+                    <Slider
+                        Minimum="0" Maximum="2" 
+                        SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True"
+                        Value="{Binding AmbientOcclusionAdjustSliderValue}" d:Value="1.0" />
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="Exponent:" />
+                        <Label
+                            Content="{Binding AmbientOcclusionExponentSliderValue}" d:Content="1.00"
+                            ContentStringFormat="{}{0:F2}" />
+                    </StackPanel>
+                    <Slider
+                        Minimum="0.01" Maximum="2.0" 
+                        SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True"
+                        Value="{Binding AmbientOcclusionExponentSliderValue}" d:Value="1.0" />
+                </StackPanel>
+
+            </GroupBox>
+            <!-- Visibility を bind ですませば x:Name 不要では？  view の処理なのでバインドせず、今のままにしておく。 -->
+            <GroupBox x:Name="curvatureSettings" 
+                      Header="Curvature:" 
+                      Visibility="Collapsed" d:Visibility="Visible"
+                      Margin="1" BorderBrush="Black" >
+                <StackPanel Orientation="Vertical" >
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="Adjust:" />
+                        <Label
+                            Content="{Binding CurvatureAdjustSliderValue}" d:Content="50.0"
+                            ContentStringFormat="{}{0:F1}" />
+                    </StackPanel>
+                    <Slider
+                        Minimum="0.0" Maximum="200" 
+                        SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True"
+                        Value="{Binding CurvatureAdjustSliderValue}" d:Value="50.0" />
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="Exponent:" />
+                        <Label
+                            Content="{Binding CurvatureExponentSliderValue}" d:Content="1.0"
+                            ContentStringFormat="{}{0:F2}" />
+                    </StackPanel>
+                    <Slider
+                        Minimum="0.01" Maximum="4" 
+                        SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True"
+                        Value="{Binding CurvatureExponentSliderValue}" d:Value="1.0" />
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="AngleBase:" />
+                        <Label
+                            Content="{Binding CurvatureAngleBaseSliderValue}" d:Content="0.0"
+                            ContentStringFormat="{}{0:F2}" />
+                    </StackPanel>
+                    <Slider
+                        Minimum="-2" Maximum="2" 
+                        SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True"
+                        Value="{Binding CurvatureAngleBaseSliderValue}" d:Value="0.0" />
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="MaskHeightMin: " />
+                        <Label
+                            Content="{Binding CurvatureMaskHeightMinSliderValue}" d:Content="-200.0"
+                            ContentStringFormat="{}{0:F1}" />
+                    </StackPanel>
+                    <Slider
+                        Minimum="-200" Maximum="4000" 
+                        SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True"
+                        Value="{Binding CurvatureMaskHeightMinSliderValue}" d:Value="-200.0" />
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="MaskHeightMax: " />
+                        <Label
+                            Content="{Binding CurvatureMaskHeightMaxSliderValue}" d:Content="4000.0"
+                            ContentStringFormat="{}{0:F1}" />
+                    </StackPanel>
+                    <Slider 
+                        Minimum="0" Maximum="4000" 
+                        SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True"
+                        Value="{Binding CurvatureMaskHeightMaxSliderValue}" d:Value="0.0" />
+
+                    <GroupBox
+                        Header="NegaPosi:" 
+                        Margin="1" BorderBrush="Black" >
+                        <StackPanel Orientation="Vertical" >
+                            <RadioButton
+                                Content="Positive" 
+                                GroupName="NegaPosi" 
+                                IsChecked="{Binding CurvatureIsPositive}" d:IsChecked="True" 
+                                />
+                            <RadioButton
+                                Content="Negative" 
+                                GroupName="NegaPosi" 
+                                />
+                        </StackPanel>
+                    </GroupBox>
+
+                    <CheckBox Content="AngleDirectionMode" IsChecked="{Binding CurvatureIsAngleDirection}" />
+                    <StackPanel Orientation="Horizontal" >
+                        <Label Content="AngleDirection: " />
+                        <Label
+                            Content="{Binding CurvatureAngleDirectionSliderValue}" d:Content="0.0"
+                            ContentStringFormat="{}{0}" />
+                    </StackPanel>
+                    <Slider 
+                        Minimum="0" Maximum="15" 
+                        SmallChange="1" LargeChange="2" TickFrequency="1" IsSnapToTickEnabled="True"
+                        Value="{Binding CurvatureAngleDirectionSliderValue}" d:Value="0" />
+
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <ScrollViewer
+            x:Name="previewScrollVewer" 
+            Margin="1" BorderBrush="Black" Background="Red" BorderThickness="1" 
+            MouseRightButtonDown="PreviewImage_MouseRightButtonDown"
+            MouseRightButtonUp="PreviewImage_MouseRightButtonUp"
+            MouseMove="PreviewImage_MouseMove"
+            HorizontalScrollBarVisibility="Auto" 
+            VerticalScrollBarVisibility="Auto" >
+            <Image
+                x:Name="previewImage" 
+                Source="{Binding PreviewBitmapSource}" d:Source="/work/PreviewBG.png" 
+                Stretch="None" 
+                MouseWheel="PreviewImage_MouseWheel" 
+                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                RenderOptions.CachingHint="Unspecified"
+                RenderOptions.EdgeMode="Unspecified"
+                Effect="{StaticResource HeightShaderEffect}" >
+                <Image.LayoutTransform>
+                    <ScaleTransform x:Name="imageScale" d:ScaleX="0.2" d:ScaleY="0.2" />
+                </Image.LayoutTransform>
+            </Image>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

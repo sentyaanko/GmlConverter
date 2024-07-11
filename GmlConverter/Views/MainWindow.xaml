@@ -1,0 +1,23 @@
+﻿<Window x:Class="GmlConverter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GmlConverter" 
+        Height="600" Width="800">
+    <DockPanel LastChildFill="True">
+        <StackPanel
+            Margin="2" 
+            Orientation="Horizontal" 
+            IsEnabled="{Binding IsNotProcessing}"
+            DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" >
+                <Button Content="Convert GmlToPng" Margin="2" Click="ConvertGmlToPngButton_Click" />
+                <Button Content="Tile Png" Margin="2" Click="TilePngButton_Click" />
+                <Button Content="Create Mask" Margin="2" Click="CreateMaskButton_Click" />
+                <Button Content="NoDataToSlope" Margin="2" Click="NoDataToSlopeButton_Click" />
+                <Button Content="Devide Png" Margin="2" Click="DevidePngButton_Click" />
+                <Label Content="{Binding StatusLabel}" />
+            </StackPanel>
+        </StackPanel>
+        <ContentControl x:Name="stepContainer" />
+    </DockPanel>
+</Window>

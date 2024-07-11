@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GmlConverter": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
